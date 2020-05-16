@@ -57,7 +57,7 @@ function _M.set_keepalive(self, ...)
     if self.subscribed then
         return nil, "subscribed state"
     end
-    return sock:setkeepalive_nats(...)
+    return sock:setkeepalive(...)
 end
 
 
