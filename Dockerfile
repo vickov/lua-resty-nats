@@ -17,8 +17,11 @@ FROM openresty/openresty:latest-xenial
 
 RUN /usr/local/openresty/luajit/bin/luarocks install lua-resty-nats
 
-CMD ["/usr/local/openresty/bin/openresty", "-g", "daemon off;"]
+RUN sed -i 's/setkeepalive_nats/setkeepalive/g' /usr/local/openresty/luajit/share/lua/5.1/resty/nats.lua
+
+
+#CMD ["/usr/local/openresty/bin/openresty", "-g", "daemon off;"]
 
 # Use SIGQUIT instead of default SIGTERM to cleanly drain requests
 # See https://github.com/openresty/docker-openresty/blob/master/README.md#tips--pitfalls
-STOPSIGNAL SIGQUIT
+#STOPSIGNAL SIGQUIT
